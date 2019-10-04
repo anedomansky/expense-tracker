@@ -27,6 +27,14 @@ db.serialize(() => {
                 console.log('> Created the table.');
             }
         });
+    db.run('CREATE TABLE IF NOT EXISTS category (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT)',
+        (error): void => {
+            if (error) {
+                console.error('> Could not create the table.', error);
+            } else {
+                console.log('> Created the table.');
+            }
+        });
     db.close((error): void => {
         if (error) {
             console.error('> Could not disconnect from the database.', error);
