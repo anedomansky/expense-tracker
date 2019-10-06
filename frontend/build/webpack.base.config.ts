@@ -21,7 +21,18 @@ const baseConfig: webpack.Configuration = {
                     // disable type checker - use it in fork plugin
                     transpileOnly: true
                 }
-            }
+            },
+            {
+                test: /\.(png|jpg|gif|svg)$/i,
+                use: [
+                    {
+                        loader: 'url-loader',
+                        options: {
+                            limit: 10000 // if the file is bigger than that, url-loader falls back to file-loader and creates a file instead of a dataUrl - needs file-loader
+                        },
+                    },
+                ],
+            },
         ]
     },
     plugins: [
