@@ -1,1 +1,5 @@
-// TODO: use as Assets object for other files
+import cashIconUrl from './images/money.png';
+
+export const Assets = {
+    cashIconUrl
+};
