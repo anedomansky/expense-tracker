@@ -1,10 +1,10 @@
 import React from 'react';
-import SideMenu from './layout/SideMenu';
-import Footer from './layout/Footer';
+import SideMenu from '../layout/side-menu/SideMenu';
+import Footer from '../layout/footer/Footer';
 import { renderRoutes } from 'react-router-config';
-import { routes } from '../routes';
-import Header from './layout/Header';
-import '../styles/App.scss';
+import { routes } from '../../routes';
+import Header from '../layout/header/Header';
+import './App.scss';
 
 const App: React.FC = () => (
     <div className="content">
