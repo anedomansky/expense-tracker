@@ -3,7 +3,7 @@ import './Header.scss';
 
 const Header: React.FC = () => (
     <header>
-        <h1>Header</h1>
+        <h1>Expense-Tracker</h1>
     </header>
 );
 
