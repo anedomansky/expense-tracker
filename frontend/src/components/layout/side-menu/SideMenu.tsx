@@ -1,27 +1,28 @@
 import React from 'react';
 import './SideMenu.scss';
 import { Assets } from '../../../assets';
+import { Link } from 'react-router-dom';
 
 const SideMenu: React.FC = () => (
     <div className="sidenav">
-        <img className="sidenav__icon" src={Assets.calculatorIconUrl} alt="Calculator" />
+        <Link to="/"><img className="sidenav__icon" src={Assets.calculatorIconUrl} alt="Calculator" /></Link>
         <h2>Want to see or input your expenses?</h2>
         <nav>
             <section className="expense">
-                <div className="expense__dropdown">
+                <div className="dropdown">
                     <button className="dropbtn">Expenses</button>
                     <div className="dropdown-content">
-                        <a href="#">List all expenses</a>
-                        <a href="#">Add new expenses</a>
+                        <Link to="/expense/all">List all expenses</Link>
+                        <Link to="/expense/add">Add new expenses</Link>
                     </div>
                 </div>
             </section>
             <section className="category">
-                <div className="category__dropdown">
+                <div className="dropdown">
                     <button className="dropbtn">Categories</button>
                     <div className="dropdown-content">
-                        <a href="#">List all categories</a>
-                        <a href="#">Add new category</a>
+                        <Link to="/category/all">List all categories</Link>
+                        <Link to="/category/add">Add new category</Link>
                     </div>
                 </div>
             </section>
