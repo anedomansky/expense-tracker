@@ -18,6 +18,7 @@ const db = new sqlite3.Database(dbFilename, (error): void => {
     }
 });
 
+// TODO: add a date column
 db.serialize(() => {
     db.run('CREATE TABLE IF NOT EXISTS expenses (id INTEGER PRIMARY KEY AUTOINCREMENT, expense_text TEXT, amount REAL, category TEXT)',
         (error): void => {
