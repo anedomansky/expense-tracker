@@ -1,9 +1,9 @@
 import {RouteConfig} from 'react-router-config';
 import LandingPage from './components/landingpage/LandingPage';
-import CategoryList from './components/category/CategoryList';
 import ExpenseList from './components/expense/ExpenseList';
-import CategoryAdd from './components/category/CategoryAdd';
 import ExpenseAdd from './components/expense/ExpenseAdd';
+import CategoryList from './components/category/list/CategoryList';
+import CategoryAdd from './components/category/add/CategoryAdd';
 
 export const routes: RouteConfig[] = [
     {
