@@ -17,6 +17,7 @@
         "jest": true
     },
     "extends": [
+        "airbnb",
         "eslint:recommended",
         "plugin:@typescript-eslint/recommended",
         "plugin:react/recommended"
@@ -27,9 +28,31 @@
         }
     },
     "rules": {
-        "no-undef":"off",
+        "no-undef": "off",
+        "indent": [
+            "error",
+            4
+        ],
+        "import/no-unresolved": "off",
         "@typescript-eslint/no-non-null-assertion": "off",
-        "@typescript-eslint/interface-name-prefix": [1, { "prefixWithI": "always" }],
-        "react/jsx-filename-extension": ["warn", { "extensions": [".jsx", ".tsx"]}]
+        "@typescript-eslint/interface-name-prefix": [
+            1,
+            {
+                "prefixWithI": "always"
+            }
+        ],
+        "react/jsx-filename-extension": [
+            "warn",
+            {
+                "extensions": [
+                    ".jsx",
+                    ".tsx"
+                ]
+            }
+        ],
+        "react/jsx-indent": [
+            "warn",
+            4
+        ]
     }
 }

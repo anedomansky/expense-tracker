@@ -1,25 +1,21 @@
 import express from 'express';
-import { db } from '..';
 import { ICategory } from '../interfaces/ICategory';
+import sqlite3 from 'sqlite3';
 
 export const categoryRoutes = express.Router();
+const dbFilename = process.env.DB || '../db.sqlite3';
 
-categoryRoutes.route('/').get((req, res) => {
-  /*
-  User.find((err, users) => {
-  if (err) {
-    throw new Error(err);
-  }
-  res.json(users);
-});
-  */
+categoryRoutes.route('/all').get((req, res) => {
+  const db = new sqlite3.Database(dbFilename, sqlite3.OPEN_READONLY);
   const sql = 'SELECT * FROM category';
   db.all(sql, (error, rows: ICategory[]) => {
     if (error) {
       console.error(error);
     }
-    return rows;
-  })
+    console.info(rows);
+    res.send(rows);
+  });
+  db.close();
 });
 
 categoryRoutes.route('/add').post((req, res) => {
