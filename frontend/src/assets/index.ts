@@ -1,5 +1,7 @@
-import cashIconUrl from './images/money.png';
+import calculatorIconUrl from './icons/calculator.png';
 
-export const Assets = {
-    cashIconUrl
+const Assets = {
+    calculatorIconUrl,
 };
+
+export default Assets;

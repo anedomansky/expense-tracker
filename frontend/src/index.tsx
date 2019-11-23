@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/App';
+import App from './components/app/App';
 import { BrowserRouter } from 'react-router-dom';
-import './styles/index.scss';
+import './index.scss';
 
 // needed in order to enable HMR
 declare let module: __WebpackModuleApi.Module;

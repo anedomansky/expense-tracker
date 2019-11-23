@@ -1,5 +1,5 @@
 import webpack from 'webpack';
-import friendlyErrorsWebpackPlugin from 'friendly-errors-webpack-plugin';
+import FriendlyErrorsWebpackPlugin from 'friendly-errors-webpack-plugin';
 
 const baseConfig: webpack.Configuration = {
     module: {
@@ -10,8 +10,8 @@ const baseConfig: webpack.Configuration = {
                 use: [
                     'style-loader',
                     'css-loader',
-                    'sass-loader'
-                ]
+                    'sass-loader',
+                ],
             },
             {
                 test: /\.tsx?$/,
@@ -19,8 +19,8 @@ const baseConfig: webpack.Configuration = {
                 loader: 'ts-loader',
                 options: {
                     // disable type checker - use it in fork plugin
-                    transpileOnly: true
-                }
+                    transpileOnly: true,
+                },
             },
             {
                 test: /\.(png|jpg|gif|svg)$/i,
@@ -28,20 +28,23 @@ const baseConfig: webpack.Configuration = {
                     {
                         loader: 'url-loader',
                         options: {
-                            limit: 10000 // if the file is bigger than that, url-loader falls back to file-loader and creates a file instead of a dataUrl - needs file-loader
+                            // if the file is bigger than that,
+                            // url-loader falls back to file-loader
+                            // and creates a file instead of a dataUrl
+                            // - needs file-loader
+                            limit: 10000,
                         },
                     },
                 ],
             },
-        ]
+        ],
     },
     plugins: [
-        new friendlyErrorsWebpackPlugin()
+        new FriendlyErrorsWebpackPlugin(),
     ],
     resolve: {
-        extensions: ['.ts', '.tsx', '.js']
-    }
-
+        extensions: ['.ts', '.tsx', '.js'],
+    },
 };
 
 export default baseConfig;

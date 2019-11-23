@@ -1,9 +1,9 @@
 .content {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    grid-auto-rows: minmax(100px, auto);
+    grid-auto-rows: minmax(125px, auto);
     grid-template-areas: 
-        "header header header header header header"
+        "menu header header header header header"
         "menu main main main main main"
         "menu main main main main main"
         "menu main main main main main"
@@ -14,4 +14,10 @@
 
 main {
     grid-area: main;
+    padding: 1rem;
+}
+
+a {
+    text-decoration: none;
+    color: black;
 }

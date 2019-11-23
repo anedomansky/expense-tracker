@@ -1,0 +1,10 @@
+footer {
+    grid-area: footer;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+
+    .flaticon {
+        font-size: 0.5rem;
+    }
+}
