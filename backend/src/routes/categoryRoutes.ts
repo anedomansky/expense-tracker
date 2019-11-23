@@ -19,7 +19,7 @@ categoryRoutes.route('/all').get((req, res) => {
 });
 
 categoryRoutes.route('/add').post((req, res) => {
-
+  // TODO: implement me
 });
 
 categoryRoutes.route('/update').post((req, res) => {

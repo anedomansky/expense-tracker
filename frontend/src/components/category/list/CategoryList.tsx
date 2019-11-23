@@ -3,23 +3,23 @@ import './CategoryList.scss';
 import { ICategory } from '../../../interfaces/ICategory';
 import CategoryService from '../service/CategoryService';
 
-interface IState {
+interface State {
     categories: ICategory[];
 }
 
-class CategoryList extends React.PureComponent<{}, IState> {
+class CategoryList extends React.PureComponent<{}, State> {
     constructor(props: any) {
         super(props);
         this.state = {
-            categories: []
-        }
+            categories: [],
+        };
     }
 
     async componentDidMount(): Promise<void> {
         const fetchedCategories = await CategoryService.getInstance().getAllCategories();
         this.setState({
-            categories: fetchedCategories 
-        })
+            categories: fetchedCategories,
+        });
         console.log(fetchedCategories, this.state.categories);
     }
 
@@ -36,19 +36,17 @@ class CategoryList extends React.PureComponent<{}, IState> {
                     </thead>
                     <tbody>
                         {
-                            this.state.categories.map((category: ICategory) => {
-                                return (
-                                    <tr key={category.id}>
-                                        <td>{category.id}</td>
-                                        <td>{category.name}</td>
-                                    </tr>
-                                );
-                            })
+                            this.state.categories.map((category: ICategory) => (
+                                <tr key={category.id}>
+                                    <td>{category.id}</td>
+                                    <td>{category.name}</td>
+                                </tr>
+                            ))
                         }
                     </tbody>
                 </table>
             </section>
-        )
+        );
     }
 }
 

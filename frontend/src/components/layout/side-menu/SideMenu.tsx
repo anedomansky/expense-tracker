@@ -1,7 +1,7 @@
 import React from 'react';
 import './SideMenu.scss';
-import { Assets } from '../../../assets';
 import { Link } from 'react-router-dom';
+import Assets from '../../../assets';
 
 const SideMenu: React.FC = () => (
     <div className="sidenav">
@@ -10,7 +10,7 @@ const SideMenu: React.FC = () => (
         <nav>
             <section className="expense">
                 <div className="dropdown">
-                    <button className="dropbtn">Expenses</button>
+                    <button className="dropbtn" type="button">Expenses</button>
                     <div className="dropdown-content">
                         <Link to="/expense/all">List all expenses</Link>
                         <Link to="/expense/add">Add new expenses</Link>
@@ -19,7 +19,7 @@ const SideMenu: React.FC = () => (
             </section>
             <section className="category">
                 <div className="dropdown">
-                    <button className="dropbtn">Categories</button>
+                    <button className="dropbtn" type="button">Categories</button>
                     <div className="dropdown-content">
                         <Link to="/category/all">List all categories</Link>
                         <Link to="/category/add">Add new category</Link>
