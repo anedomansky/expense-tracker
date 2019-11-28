@@ -12,7 +12,7 @@ sqlite3.verbose();
 const PORT = process.env.PORT || 4001;
 const dbFilename = process.env.DB || '../db.sqlite3';
 
-export const db = new sqlite3.Database(dbFilename, (error): void => {
+const db = new sqlite3.Database(dbFilename, (error): void => {
     if (error) {
         console.error('> Could not connect to database.', error);
     } else {
