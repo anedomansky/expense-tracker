@@ -37,7 +37,20 @@ class CategoryService {
         return response;
     }
 
-    // TODO: implement /update, /delete
+    public async removeCategory(id: number): Promise<ISuccessMessage> {
+        const responseRaw = await fetch(`${this.baseUrl}/category/delete`, {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ id }),
+        });
+        const response = responseRaw.json();
+        return response;
+    }
+
+    // TODO: implement /update
 }
 
 export default CategoryService;
