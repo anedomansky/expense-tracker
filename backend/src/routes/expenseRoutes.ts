@@ -2,7 +2,7 @@ import express from 'express';
 
 export const expenseRoutes = express.Router();
 
-expenseRoutes.route('/').get((req, res) => {
+expenseRoutes.route('/all').get((req, res) => {
 
 });
 

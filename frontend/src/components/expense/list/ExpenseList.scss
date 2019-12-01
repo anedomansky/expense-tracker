@@ -1,0 +1,47 @@
+.expense-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    & h2 {
+        padding: 2rem;
+    }
+
+    & table {
+        width: 50%;
+        text-align: center;
+        border-collapse: collapse;
+
+        & thead th {
+            padding: 2rem;
+        }
+
+        & tbody {
+            & tr {
+                border-top: 1px solid black;
+
+                &:hover {
+                    background-color: #f1f1f1;
+                }
+            }
+
+            & td {
+                padding: 1rem;
+            }
+
+            & .removeBtn {
+                background-color: rgb(1,62,98);
+                color: white;
+                padding: 1rem;
+                font-size: 1rem;
+                min-width: 6rem;
+                border: none;
+                cursor: pointer;
+                box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+            }
+        }
+    }
+
+}
+
