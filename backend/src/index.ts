@@ -20,8 +20,10 @@ const db = new sqlite3.Database(dbFilename, (error): void => {
     }
 });
 
+db.get('PRAGMA foreign_keys = ON');
+
 db.serialize(() => {
-    db.run('CREATE TABLE IF NOT EXISTS expenses (id INTEGER PRIMARY KEY AUTOINCREMENT, expense_text TEXT, amount REAL, category TEXT, date DATETIME DEFAULT current_timestamp)',
+    db.run('CREATE TABLE IF NOT EXISTS expense (id INTEGER PRIMARY KEY AUTOINCREMENT, description TEXT, amount REAL, category TEXT, date DATETIME DEFAULT current_timestamp, FOREIGN KEY (category) REFERENCES category (name))',
         (error): void => {
             if (error) {
                 console.error('> Could not create the table.', error);
@@ -29,7 +31,7 @@ db.serialize(() => {
                 console.log('> Created the table.');
             }
         });
-    db.run('CREATE TABLE IF NOT EXISTS category (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT)',
+    db.run('CREATE TABLE IF NOT EXISTS category (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT UNIQUE)',
         (error): void => {
             if (error) {
                 console.error('> Could not create the table.', error);

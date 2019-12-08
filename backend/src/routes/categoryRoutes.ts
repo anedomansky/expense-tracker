@@ -13,7 +13,7 @@ categoryRoutes.route('/all').get((req, res) => {
     if (error) {
       console.error(error);
     }
-    console.info(rows);
+    console.dir(rows);
     res.send(rows);
   });
   db.close();
@@ -26,7 +26,7 @@ categoryRoutes.route('/add').post((req, res) => {
     if (error) {
       console.error(error);
     }
-    console.info(`Added new category: ${req.body.name}`);
+    console.log(`Added new category: ${req.body.name}`);
     const response: ISuccessMessage = {
       success: 'Added new category!',
     };
@@ -46,7 +46,7 @@ categoryRoutes.route('/delete').post((req, res) => {
     if(error) {
       console.error(error);
     }
-    console.info(`Removed category with the id: ${req.body.id}`);
+    console.log(`Removed category with the id: ${req.body.id}`);
     const response: ISuccessMessage = {
       success: 'Removed the category!',
     };

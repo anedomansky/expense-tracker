@@ -1,6 +1,7 @@
 import React from 'react';
 import { IExpense } from '../../../interfaces/IExpense';
 import ExpenseService from '../service/ExpenseService';
+import './ExpenseList.scss';
 
 interface State {
     expenses: IExpense[];
