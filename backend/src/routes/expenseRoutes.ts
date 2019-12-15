@@ -1,5 +1,6 @@
 import express from 'express';
 import sqlite3 from 'sqlite3';
+import chalk from 'chalk';
 import { IExpense } from '../interfaces/IExpense';
 import { ISuccessMessage } from '../interfaces/ISuccessMessage';
 
@@ -11,9 +12,9 @@ expenseRoutes.route('/all').get((req, res) => {
     const sql = 'SELECT * FROM expense';
     db.all(sql, (error, rows: IExpense[]) => {
         if (error) {
-            console.error(error);
+            console.trace(chalk.red(error));
         }
-        console.dir(rows);
+        console.table(rows);
         res.send(rows);
     });
     db.close();
@@ -24,9 +25,9 @@ expenseRoutes.route('/add').post((req, res) => {
     const sql = 'INSERT INTO expense(id, description, amount, date, category) VALUES(NULL, ?, ?, ?, ?)';
     db.run(sql, [req.body.description, req.body.amount, req.body.category, req.body.date], (error) => {
         if (error) {
-            console.error(error);
+            console.trace(chalk.red(error));
         }
-        console.log(`Added new expense: ${req.body.description}`);
+        console.log(chalk.green(`Added new expense: ${req.body.description}`));
         const response: ISuccessMessage = {
             success: 'Added new expense!',
         };

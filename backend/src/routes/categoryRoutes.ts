@@ -1,6 +1,7 @@
 import express from 'express';
 import { ICategory } from '../interfaces/ICategory';
 import sqlite3 from 'sqlite3';
+import chalk from 'chalk';
 import { ISuccessMessage } from '../interfaces/ISuccessMessage';
 
 export const categoryRoutes = express.Router();
@@ -11,9 +12,9 @@ categoryRoutes.route('/all').get((req, res) => {
   const sql = 'SELECT * FROM category';
   db.all(sql, (error, rows: ICategory[]) => {
     if (error) {
-      console.error(error);
+      console.trace(chalk.red(error));
     }
-    console.dir(rows);
+    console.table(rows);
     res.send(rows);
   });
   db.close();
@@ -24,9 +25,9 @@ categoryRoutes.route('/add').post((req, res) => {
   const sql = 'INSERT INTO category(id, name) VALUES(NULL, ?)';
   db.run(sql, req.body.name, (error) => {
     if (error) {
-      console.error(error);
+      console.trace(chalk.red(error));
     }
-    console.log(`Added new category: ${req.body.name}`);
+    console.log(chalk.green(`Added new category: ${req.body.name}`));
     const response: ISuccessMessage = {
       success: 'Added new category!',
     };
@@ -44,9 +45,9 @@ categoryRoutes.route('/delete').post((req, res) => {
   const sql = 'DELETE FROM category WHERE id = ?';
   db.run(sql, req.body.id, (error) => {
     if(error) {
-      console.error(error);
+      console.trace(chalk.red(error));
     }
-    console.log(`Removed category with the id: ${req.body.id}`);
+    console.log(chalk.green(`Removed category with the id: ${req.body.id}`));
     const response: ISuccessMessage = {
       success: 'Removed the category!',
     };

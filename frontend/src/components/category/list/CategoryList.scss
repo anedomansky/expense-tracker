@@ -4,11 +4,15 @@
     align-items: center;
     flex-direction: column;
 
-    & h2 {
+    & .category-heading {
         padding: 2rem;
     }
 
-    & table {
+    & .category-add--link {
+        color: rgb(25,178,229);
+    }
+
+    & .category-table {
         width: 50%;
         text-align: center;
         border-collapse: collapse;
@@ -42,6 +46,4 @@
             }
         }
     }
-
 }
-

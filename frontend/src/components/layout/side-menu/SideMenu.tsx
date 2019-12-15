@@ -6,7 +6,6 @@ import Assets from '../../../assets';
 const SideMenu: React.FC = () => (
     <div className="sidenav">
         <Link to="/"><img className="sidenav__icon" src={Assets.calculatorIconUrl} alt="Calculator" /></Link>
-        <h2>Want to see or input your expenses?</h2>
         <nav>
             <section className="expense">
                 <div className="dropdown">

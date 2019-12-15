@@ -4,11 +4,15 @@
     align-items: center;
     flex-direction: column;
 
-    & h2 {
+    & .expense-heading {
         padding: 2rem;
     }
 
-    & table {
+    & .expense-add--link {
+        color: rgb(25,178,229);
+    }
+
+    & table .expense-table {
         width: 50%;
         text-align: center;
         border-collapse: collapse;
