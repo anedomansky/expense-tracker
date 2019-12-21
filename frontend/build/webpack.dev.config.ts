@@ -26,7 +26,7 @@ const devConfig: webpack.Configuration = {
             inject: true,
             title: 'Expense-Tracker',
             template: path.resolve(__dirname, '../src/index.html'),
-            favicon: path.resolve(__dirname, '../src/assets/icons/money.png'),
+            favicon: path.resolve(__dirname, '../src/assets/icons/calculator.png'),
         }),
         new ForkTsCheckerWebpackPlugin({
             eslint: true,

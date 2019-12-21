@@ -22,6 +22,19 @@ class ExpenseService {
         const response = await responseRaw.json();
         return response;
     }
+
+    public async addExpense(name: string): Promise<ISuccessMessage> {
+        const responseRaw = await fetch(`${this.baseUrl}/expense/add`, {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ name }),
+        });
+        const response = responseRaw.json();
+        return response;
+    }
 }
 
 export default ExpenseService;

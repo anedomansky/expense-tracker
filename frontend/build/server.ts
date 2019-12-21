@@ -4,6 +4,7 @@ import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import dotenv from 'dotenv';
+import path from 'path';
 import webpackConfig from './webpack.dev.config';
 
 if (!process.env.NODE_ENV) {
@@ -29,6 +30,15 @@ app.use(webpackDevMiddleware(compiler, {
 }));
 
 const URL = `http://localhost:${PORT}`;
+
+// catch-all for any request
+app.get('/*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../dist/index.html'), (err) => {
+        if (err) {
+            res.status(500).send(err);
+        }
+    });
+});
 
 app.listen(PORT, () => {
     if (autoOpenBrowser) {

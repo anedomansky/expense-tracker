@@ -1,13 +1,12 @@
 import React, { ReactNode } from 'react';
-import './CategoryAdd.scss';
 import CategoryService from '../service/CategoryService';
+import Add from '../../common/add/Add';
 
 interface State {
     successMessage: string;
     name: string;
 }
 
-// TODO: reset form after submit
 class CategoryAdd extends React.PureComponent<{}, State> {
     constructor(props: {}) {
         super(props);
@@ -17,7 +16,7 @@ class CategoryAdd extends React.PureComponent<{}, State> {
         };
     }
 
-    async addCategory(event: any): Promise<void> {
+    addCategory = async (event: any): Promise<void> => {
         event.preventDefault();
         const response = await CategoryService.getInstance().addCategory(event.target[0].value);
         this.setState({
@@ -26,7 +25,7 @@ class CategoryAdd extends React.PureComponent<{}, State> {
         });
     }
 
-    handleNameChange(event: any): void {
+    handleNameChange = (event: any): void => {
         this.setState({
             name: event.target.value,
         });
@@ -35,18 +34,13 @@ class CategoryAdd extends React.PureComponent<{}, State> {
     render(): ReactNode {
         const { successMessage, name } = this.state;
         return (
-            <section className="category-add">
-                <h2>Add a new category</h2>
-                <form onSubmit={() => this.addCategory(event)}>
-                    <label htmlFor="category-add__name">
-                        Name:
-                        <input onChange={() => this.handleNameChange(event)} placeholder="Enter a name..." type="text" id="category-add__name" name="name" pattern="[a-zA-Z]+" value={name} required />
-                        <button type="submit">Add</button>
-                    </label>
-                </form>
-                <br />
-                <p className="success-info">{successMessage}</p>
-            </section>
+            <Add
+                title="Add a new category"
+                value={name}
+                onSubmit={this.addCategory}
+                onChange={this.handleNameChange}
+                successMessage={successMessage}
+            />
         );
     }
 }

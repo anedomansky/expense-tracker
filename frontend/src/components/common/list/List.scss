@@ -1,18 +1,18 @@
-.expense-list {
+.list-items {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 
-    & .expense-heading {
+    & .list-items__heading {
         padding: 2rem;
     }
 
-    & .expense-add--link {
+    & .list-items__add--link {
         color: rgb(25,178,229);
     }
 
-    & table .expense-table {
+    & .list-items__table {
         width: 50%;
         text-align: center;
         border-collapse: collapse;
@@ -46,6 +46,4 @@
             }
         }
     }
-
 }
-

@@ -49,6 +49,8 @@
         "react/jsx-indent": [
             "warn",
             4
-        ]
+        ],
+        "react/prop-types": 0,
+        "react/jsx-indent-props": 0
     }
 }

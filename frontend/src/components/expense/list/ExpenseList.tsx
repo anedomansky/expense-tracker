@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { IExpense } from '../../../interfaces/IExpense';
 import ExpenseService from '../service/ExpenseService';
-import './ExpenseList.scss';
+import List from '../../common/list/List';
 
 interface State {
     expenses: IExpense[];
@@ -38,48 +38,37 @@ class ExpenseList extends React.PureComponent<{}, State> {
     render(): React.ReactNode {
         const { expenses, success } = this.state;
         return (
-            <section className="expense-list">
-                <h2 className="expense-heading">Expenses</h2>
-                {
-                    success && expenses.length === 0
-                    && (
-                        <p>
-                            There are no expenses yet. You can add one
-                            <Link to="/expense/add" className="expense-add--link"> here</Link>
-                        </p>
-                    )
-                }
-                {
-                    success && expenses.length > 0
-                    && (
-                        <table className="expense-table">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Text</th>
-                                    <th>Amount</th>
-                                    <th>Category</th>
-                                    <th>Date</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {
-                                    expenses.map((expense: IExpense) => (
-                                        <tr key={expense.id}>
-                                            <td>{expense.id}</td>
-                                            <td>{expense.text}</td>
-                                            <td>{expense.amount}</td>
-                                            <td>{expense.category}</td>
-                                            <td>{expense.date}</td>
-                                            <td><button type="button" className="removeBtn" onClick={() => this.handleRemoveExpense(expense.id)}>Remove</button></td>
-                                        </tr>
-                                    ))
-                                }
-                            </tbody>
-                        </table>
-                    )
-                }
-            </section>
+            <List
+                title="Expenses"
+                success={success}
+                addLinkInfo="There are no expenses yet. You can add one"
+                addLinkDestination="/expense/add"
+                items={expenses}
+            >
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Text</th>
+                        <th>Amount</th>
+                        <th>Category</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        expenses.map((expense: IExpense) => (
+                            <tr key={expense.id}>
+                                <td>{expense.id}</td>
+                                <td>{expense.text}</td>
+                                <td>{expense.amount}</td>
+                                <td>{expense.category}</td>
+                                <td>{expense.date}</td>
+                                <td><button type="button" className="removeBtn" onClick={() => this.handleRemoveExpense(expense.id)}>Remove</button></td>
+                            </tr>
+                        ))
+                    }
+                </tbody>
+            </List>
         );
     }
 };
