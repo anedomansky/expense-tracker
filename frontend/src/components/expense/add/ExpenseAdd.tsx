@@ -41,6 +41,7 @@ class ExpenseAdd extends React.PureComponent<{}, State> {
                 onSubmit={this.addExpense}
                 onChange={this.handleNameChange}
                 successMessage={successMessage}
+                showCategoryInput
             />
         );
     }
