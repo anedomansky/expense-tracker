@@ -22,8 +22,8 @@ expenseRoutes.route('/all').get((req, res) => {
 
 expenseRoutes.route('/add').post((req, res) => {
     const db = new sqlite3.Database(dbFilename, sqlite3.OPEN_READWRITE);
-    const sql = 'INSERT INTO expense(id, description, amount, date, category) VALUES(NULL, ?, ?, ?, ?)';
-    db.run(sql, [req.body.description, req.body.amount, req.body.category, req.body.date], (error) => {
+    const sql = 'INSERT INTO expense(id, description, amount, category, date) VALUES(NULL, ?, ?, ?, strftime("%Y-%m-%d", now))';
+    db.run(sql, [req.body.description, req.body.amount, req.body.category], (error) => {
         if (error) {
             console.trace(chalk.red(error));
         }

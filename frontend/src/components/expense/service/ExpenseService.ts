@@ -1,4 +1,5 @@
 import { IExpense } from '../../../interfaces/IExpense';
+import { ISuccessMessage } from '../../../interfaces/ISuccessMessage';
 
 class ExpenseService {
     private static instance: ExpenseService;

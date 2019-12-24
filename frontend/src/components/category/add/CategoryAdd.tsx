@@ -36,11 +36,16 @@ class CategoryAdd extends React.PureComponent<{}, State> {
         return (
             <Add
                 title="Add a new category"
-                value={name}
                 onSubmit={this.addCategory}
-                onChange={this.handleNameChange}
                 successMessage={successMessage}
-            />
+            >
+                <label htmlFor="add-item__name">
+                    Name:
+                    <br />
+                    <input onChange={() => onChange(event)} placeholder="Enter a name..." type="text" id="add-item__name" name="name" pattern="[a-zA-Z]+" value={name} required />
+                </label>
+                <button type="submit">Add</button>
+            </Add>
         );
     }
 }
