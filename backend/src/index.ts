@@ -24,7 +24,7 @@ const db = new sqlite3.Database(dbFilename, (error): void => {
 db.get('PRAGMA foreign_keys = ON');
 
 db.serialize(() => {
-    db.run('CREATE TABLE IF NOT EXISTS expense (id INTEGER PRIMARY KEY AUTOINCREMENT, description TEXT, amount REAL, category TEXT, date TEXT, FOREIGN KEY (category) REFERENCES category (name))',
+    db.run('CREATE TABLE IF NOT EXISTS expense (id INTEGER PRIMARY KEY AUTOINCREMENT, description TEXT, amount REAL, category TEXT, date TEXT, CONSTRAINT fk_category FOREIGN KEY (category) REFERENCES category (name) ON DELETE CASCADE)',
         (error): void => {
             if (error) {
                 console.trace(chalk.red('> Could not create the table.', error));

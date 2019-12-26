@@ -6,6 +6,7 @@ import List from '../../common/list/List';
 interface State {
     categories: ICategory[];
     success: boolean;
+    successMessage: string;
 }
 
 class CategoryList extends React.PureComponent<{}, State> {
@@ -14,6 +15,7 @@ class CategoryList extends React.PureComponent<{}, State> {
         this.state = {
             categories: [],
             success: false,
+            successMessage: '',
         };
     }
 
@@ -22,8 +24,11 @@ class CategoryList extends React.PureComponent<{}, State> {
     }
 
     async handleRemoveCategory(id: number): Promise<void> {
-        await CategoryService.getInstance().removeCategory(id);
+        const response = await CategoryService.getInstance().removeCategory(id);
         await this.fetchCategories();
+        this.setState({
+            successMessage: response.success,
+        });
     }
 
     async fetchCategories(): Promise<void> {
@@ -35,7 +40,7 @@ class CategoryList extends React.PureComponent<{}, State> {
     }
 
     render(): React.ReactNode {
-        const { categories, success } = this.state;
+        const { categories, success, successMessage } = this.state;
         return (
             <List
                 title="Categories"
@@ -43,6 +48,7 @@ class CategoryList extends React.PureComponent<{}, State> {
                 addLinkInfo="There are no categories yet. You can add one"
                 addLinkDestination="/category/add"
                 items={categories}
+                successMessage={successMessage}
             >
                 <thead>
                     <tr>

@@ -22,7 +22,7 @@ expenseRoutes.route('/all').get((req, res) => {
 
 expenseRoutes.route('/add').post((req, res) => {
     const db = new sqlite3.Database(dbFilename, sqlite3.OPEN_READWRITE);
-    const sql = 'INSERT INTO expense(id, description, amount, category, date) VALUES(NULL, ?, ?, ?, strftime("%Y-%m-%d", now))';
+    const sql = 'INSERT INTO expense(id, description, amount, category, date) VALUES(NULL, ?, ?, ?, datetime("now"))';
     db.run(sql, [req.body.description, req.body.amount, req.body.category], (error) => {
         if (error) {
             console.trace(chalk.red(error));
@@ -42,4 +42,16 @@ expenseRoutes.route('/update').post((req, res) => {
 
 expenseRoutes.route('/delete').post((req, res) => {
     const db = new sqlite3.Database(dbFilename, sqlite3.OPEN_READWRITE);
+    const sql = 'DELETE FROM expense WHERE id = ?';
+    db.run(sql, req.body.id, (error) => {
+        if (error) {
+            console.trace(chalk.red(error));
+        }
+        console.log(chalk.green(`Removed expense with the id: ${req.body.id}`));
+        const response: ISuccessMessage = {
+            success: 'Removed the expense!',
+        };
+        res.status(200).send(response);
+    });
+    db.close();
 });

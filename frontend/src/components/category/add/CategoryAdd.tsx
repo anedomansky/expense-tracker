@@ -25,7 +25,7 @@ class CategoryAdd extends React.PureComponent<{}, State> {
         });
     }
 
-    handleNameChange = (event: any): void => {
+    handleNameChange(event: any): void {
         this.setState({
             name: event.target.value,
         });
@@ -42,7 +42,7 @@ class CategoryAdd extends React.PureComponent<{}, State> {
                 <label htmlFor="add-item__name">
                     Name:
                     <br />
-                    <input onChange={() => onChange(event)} placeholder="Enter a name..." type="text" id="add-item__name" name="name" pattern="[a-zA-Z]+" value={name} required />
+                    <input onChange={() => this.handleNameChange(event)} placeholder="Enter a name..." type="text" id="add-item__name" name="name" pattern="[a-zA-Z]+" value={name} required />
                 </label>
                 <button type="submit">Add</button>
             </Add>

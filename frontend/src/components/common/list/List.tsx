@@ -8,9 +8,10 @@ interface Props {
     addLinkDestination: string;
     success: boolean;
     items: any[];
+    successMessage: string;
 }
 
-const List: React.FC<Props> = ({ title, addLinkInfo, addLinkDestination, success, items, children }) => (
+const List: React.FC<Props> = ({ title, addLinkInfo, addLinkDestination, success, items, children, successMessage }) => (
     <section className="list-items">
         <h2 className="list-items__heading">{title}</h2>
         {
@@ -30,6 +31,7 @@ const List: React.FC<Props> = ({ title, addLinkInfo, addLinkDestination, success
                 </table>
             )
         }
+        <p className="success-info">{successMessage}</p>
     </section>
 );
 

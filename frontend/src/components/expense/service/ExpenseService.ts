@@ -24,14 +24,31 @@ class ExpenseService {
         return response;
     }
 
-    public async addExpense(name: string): Promise<ISuccessMessage> {
+    public async addExpense(description: string, amount: number, category: string): Promise<ISuccessMessage> {
         const responseRaw = await fetch(`${this.baseUrl}/expense/add`, {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ name }),
+            body: JSON.stringify({
+                description,
+                amount,
+                category,
+            }),
+        });
+        const response = responseRaw.json();
+        return response;
+    }
+
+    public async removeExpense(id: number): Promise<ISuccessMessage> {
+        const responseRaw = await fetch(`${this.baseUrl}/expense/delete`, {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ id }),
         });
         const response = responseRaw.json();
         return response;

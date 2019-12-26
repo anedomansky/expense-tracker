@@ -44,7 +44,7 @@ categoryRoutes.route('/delete').post((req, res) => {
   const db = new sqlite3.Database(dbFilename, sqlite3.OPEN_READWRITE);
   const sql = 'DELETE FROM category WHERE id = ?';
   db.run(sql, req.body.id, (error) => {
-    if(error) {
+    if (error) {
       console.trace(chalk.red(error));
     }
     console.log(chalk.green(`Removed category with the id: ${req.body.id}`));
@@ -52,5 +52,6 @@ categoryRoutes.route('/delete').post((req, res) => {
       success: 'Removed the category!',
     };
     res.status(200).send(response);
-  })
+  });
+  db.close();
 });

@@ -7,6 +7,7 @@ import List from '../../common/list/List';
 interface State {
     expenses: IExpense[];
     success: boolean;
+    successMessage: string;
 }
 
 class ExpenseList extends React.PureComponent<{}, State> {
@@ -15,11 +16,12 @@ class ExpenseList extends React.PureComponent<{}, State> {
         this.state = {
             expenses: [],
             success: false,
+            successMessage: '',
         };
     }
 
     async componentDidMount(): Promise<void> {
-        this.fetchExpenses();
+        await this.fetchExpenses();
     }
 
     async fetchExpenses(): Promise<void> {
@@ -31,12 +33,15 @@ class ExpenseList extends React.PureComponent<{}, State> {
     }
 
     async handleRemoveExpense(id: number): Promise<void> {
-        // TODO: implement me
-        this.fetchExpenses();
+        const response = await ExpenseService.getInstance().removeExpense(id);
+        await this.fetchExpenses();
+        this.setState({
+            successMessage: response.success, 
+        });
     }
 
     render(): React.ReactNode {
-        const { expenses, success } = this.state;
+        const { expenses, success, successMessage } = this.state;
         return (
             <List
                 title="Expenses"
@@ -44,6 +49,7 @@ class ExpenseList extends React.PureComponent<{}, State> {
                 addLinkInfo="There are no expenses yet. You can add one"
                 addLinkDestination="/expense/add"
                 items={expenses}
+                successMessage={successMessage}
             >
                 <thead>
                     <tr>
@@ -59,7 +65,7 @@ class ExpenseList extends React.PureComponent<{}, State> {
                         expenses.map((expense: IExpense) => (
                             <tr key={expense.id}>
                                 <td>{expense.id}</td>
-                                <td>{expense.text}</td>
+                                <td>{expense.description}</td>
                                 <td>{expense.amount}</td>
                                 <td>{expense.category}</td>
                                 <td>{expense.date}</td>

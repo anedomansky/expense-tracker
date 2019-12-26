@@ -8,7 +8,7 @@ import { ICategory } from '../../../interfaces/ICategory';
 interface State {
     successMessage: string;
     description: string;
-    amount: string;
+    amount: number;
     categoryNames: ICategory[];
 }
 
@@ -18,7 +18,7 @@ class ExpenseAdd extends React.PureComponent<{}, State> {
         this.state = {
             successMessage: '',
             description: '',
-            amount: '',
+            amount: 0,
             categoryNames: [],
         };
     }
@@ -32,7 +32,7 @@ class ExpenseAdd extends React.PureComponent<{}, State> {
 
     addExpense = async (event: any): Promise<void> => {
         event.preventDefault();
-        const response = await ExpenseService.getInstance().addExpense(event.target[0].value);
+        const response = await ExpenseService.getInstance().addExpense(event.target[0].value, event.target[1].value, event.target[2].value);
         this.setState({
             successMessage: response.success,
             description: '',
@@ -48,12 +48,12 @@ class ExpenseAdd extends React.PureComponent<{}, State> {
 
     handleAmountChange(event: any): void {
         this.setState({
-            amount: event.target.value.toString() + '€',
+            amount: event.target.value,
         });
     }
 
     render(): ReactNode {
-        const { successMessage, name, categoryNames } = this.state;
+        const { successMessage, categoryNames, description, amount } = this.state;
         return (
             <Add
                 title="Add a new expense"
@@ -63,12 +63,12 @@ class ExpenseAdd extends React.PureComponent<{}, State> {
                 <label htmlFor="add-item__name">
                     Description:
                     <br />
-                    <input onChange={() => this.handleDescriptionChange(event)} placeholder="Enter a Description..." type="text" id="add-item__name" name="name" pattern="[a-zA-Z]+" value={name} required />
+                    <input onChange={() => this.handleDescriptionChange(event)} placeholder="Enter a Description..." type="text" id="add-item__name" name="name" pattern="[a-zA-Z]+" value={description} required />
                 </label>
                 <label htmlFor="add-item__name">
-                    Amount:
+                    Amount(in €):
                     <br />
-                    <input onChange={() => this.handleAmountChange(event)} placeholder="Enter an Amount..." type="number" id="add-item__name" name="name" pattern="[a-zA-Z]+" value={name} required />
+                    <input onChange={() => this.handleAmountChange(event)} placeholder="Enter an Amount..." type="number" id="add-item__name" name="name" value={amount} required />
                 </label>
                 <label htmlFor="add-item__category">
                     Category:
