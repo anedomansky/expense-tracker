@@ -4,8 +4,8 @@ import ExpenseList from './components/expense/list/ExpenseList';
 import ExpenseAdd from './components/expense/add/ExpenseAdd';
 import CategoryList from './components/category/list/CategoryList';
 import CategoryAdd from './components/category/add/CategoryAdd';
+import NotFoundPage from './components/notfoundpage/NotFoundPage';
 
-// TODO: implement Not found page
 const routes: RouteConfig[] = [
     {
         component: LandingPage,
@@ -27,6 +27,9 @@ const routes: RouteConfig[] = [
     {
         component: ExpenseAdd,
         path: '/expense/add',
+    },
+    {
+        component: NotFoundPage,
     },
 ];
 

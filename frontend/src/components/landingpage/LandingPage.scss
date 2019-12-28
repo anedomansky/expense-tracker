@@ -1,0 +1,9 @@
+.landing-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    & .landing-page__link {
+        color: rgb(25,178,229);
+    }
+}

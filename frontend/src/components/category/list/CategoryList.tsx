@@ -54,7 +54,6 @@ class CategoryList extends React.PureComponent<{}, State> {
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
-                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>

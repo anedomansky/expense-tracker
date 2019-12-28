@@ -4,7 +4,6 @@ import Add from '../../common/add/Add';
 import CategoryService from '../../category/service/CategoryService';
 import { ICategory } from '../../../interfaces/ICategory';
 
-// TODO: implement - centered <form>
 interface State {
     successMessage: string;
     description: string;
@@ -36,7 +35,7 @@ class ExpenseAdd extends React.PureComponent<{}, State> {
         this.setState({
             successMessage: response.success,
             description: '',
-            amount: '',
+            amount: 0,
         });
     }
 

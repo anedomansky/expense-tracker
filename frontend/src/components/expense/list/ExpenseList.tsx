@@ -55,7 +55,7 @@ class ExpenseList extends React.PureComponent<{}, State> {
                     <tr>
                         <th>ID</th>
                         <th>Text</th>
-                        <th>Amount</th>
+                        <th>Amount in €</th>
                         <th>Category</th>
                         <th>Date</th>
                     </tr>
