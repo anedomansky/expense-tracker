@@ -36,10 +36,6 @@ expenseRoutes.route('/add').post((req, res) => {
     db.close();
 });
 
-expenseRoutes.route('/update').post((req, res) => {
-
-});
-
 expenseRoutes.route('/delete').post((req, res) => {
     const db = new sqlite3.Database(dbFilename, sqlite3.OPEN_READWRITE);
     const sql = 'DELETE FROM expense WHERE id = ?';

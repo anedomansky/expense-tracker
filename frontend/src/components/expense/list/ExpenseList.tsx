@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { IExpense } from '../../../interfaces/IExpense';
 import ExpenseService from '../service/ExpenseService';
 import List from '../../common/list/List';
@@ -36,7 +35,7 @@ class ExpenseList extends React.PureComponent<{}, State> {
         const response = await ExpenseService.getInstance().removeExpense(id);
         await this.fetchExpenses();
         this.setState({
-            successMessage: response.success, 
+            successMessage: response.success,
         });
     }
 
@@ -69,7 +68,7 @@ class ExpenseList extends React.PureComponent<{}, State> {
                                 <td>{expense.amount}</td>
                                 <td>{expense.category}</td>
                                 <td>{expense.date}</td>
-                                <td><button type="button" className="removeBtn" onClick={() => this.handleRemoveExpense(expense.id)}>Remove</button></td>
+                                <td><button type="button" className="removeBtn" onClick={(): Promise<void> => this.handleRemoveExpense(expense.id)}>Remove</button></td>
                             </tr>
                         ))
                     }
@@ -77,6 +76,6 @@ class ExpenseList extends React.PureComponent<{}, State> {
             </List>
         );
     }
-};
+}
 
 export default ExpenseList;

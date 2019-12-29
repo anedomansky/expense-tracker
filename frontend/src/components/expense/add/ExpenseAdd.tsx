@@ -9,6 +9,7 @@ interface State {
     description: string;
     amount: number;
     categoryNames: ICategory[];
+    selectedCategory: string;
 }
 
 class ExpenseAdd extends React.PureComponent<{}, State> {
@@ -19,40 +20,54 @@ class ExpenseAdd extends React.PureComponent<{}, State> {
             description: '',
             amount: 0,
             categoryNames: [],
+            selectedCategory: '',
         };
     }
 
     async componentDidMount(): Promise<void> {
-        const fetchedCategoryNames = await CategoryService.getInstance().getAllCategories()
+        const fetchedCategoryNames = await CategoryService.getInstance().getAllCategories();
         this.setState({
             categoryNames: fetchedCategoryNames,
         });
     }
 
-    addExpense = async (event: any): Promise<void> => {
+    addExpense = async (event: React.FormEvent): Promise<void> => {
         event.preventDefault();
-        const response = await ExpenseService.getInstance().addExpense(event.target[0].value, event.target[1].value, event.target[2].value);
+        const { description, amount, selectedCategory } = this.state;
+        const response = await ExpenseService.getInstance().addExpense(description, amount, selectedCategory);
         this.setState({
             successMessage: response.success,
             description: '',
             amount: 0,
+            selectedCategory: '',
         });
     }
 
-    handleDescriptionChange(event: any): void {
+    handleDescriptionChange(event: React.FormEvent<HTMLInputElement>): void {
         this.setState({
-            description: event.target.value,
+            description: event.currentTarget.value,
         });
     }
 
-    handleAmountChange(event: any): void {
+    handleAmountChange(event: React.FormEvent<HTMLInputElement>): void {
         this.setState({
-            amount: event.target.value,
+            amount: parseFloat(event.currentTarget.value),
+        });
+    }
+
+    handleSelectedCategoryChange(event: React.FormEvent<HTMLSelectElement>): void {
+        this.setState({
+            selectedCategory: event.currentTarget.value,
         });
     }
 
     render(): ReactNode {
-        const { successMessage, categoryNames, description, amount } = this.state;
+        const {
+            successMessage,
+            categoryNames,
+            description,
+            amount,
+        } = this.state;
         return (
             <Add
                 title="Add a new expense"
@@ -62,17 +77,17 @@ class ExpenseAdd extends React.PureComponent<{}, State> {
                 <label htmlFor="add-item__name">
                     Description:
                     <br />
-                    <input onChange={() => this.handleDescriptionChange(event)} placeholder="Enter a Description..." type="text" id="add-item__name" name="name" pattern="[a-zA-Z]+" value={description} required />
+                    <input onChange={(event): void => this.handleDescriptionChange(event)} placeholder="Enter a Description..." type="text" id="add-item__name" name="name" pattern="[a-zA-Z]+" value={description} required />
                 </label>
                 <label htmlFor="add-item__name">
                     Amount(in €):
                     <br />
-                    <input onChange={() => this.handleAmountChange(event)} placeholder="Enter an Amount..." type="number" id="add-item__name" name="name" value={amount} required />
+                    <input onChange={(event): void => this.handleAmountChange(event)} placeholder="Enter an Amount..." type="number" id="add-item__name" name="name" value={amount} required />
                 </label>
                 <label htmlFor="add-item__category">
                     Category:
                     <br />
-                    <select name="category" id="add-item__category">
+                    <select name="category" id="add-item__category" onChange={(event): void => this.handleSelectedCategoryChange(event)}>
                         <option defaultChecked>-/-</option>
                         {
                             categoryNames?.map((category: ICategory, index: number): React.ReactNode => <option key={`${category.name}-${index}`}>{category.name}</option>)

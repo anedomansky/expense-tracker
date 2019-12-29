@@ -1,13 +1,15 @@
 import React from 'react';
 import './List.scss';
 import { Link } from 'react-router-dom';
+import { IExpense } from '../../../interfaces/IExpense';
+import { ICategory } from '../../../interfaces/ICategory';
 
 interface Props {
     title: string;
     addLinkInfo: string;
     addLinkDestination: string;
     success: boolean;
-    items: any[];
+    items: IExpense[] | ICategory[];
     successMessage: string;
 }
 

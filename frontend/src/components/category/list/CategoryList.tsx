@@ -62,7 +62,7 @@ class CategoryList extends React.PureComponent<{}, State> {
                             <tr key={category.id}>
                                 <td>{category.id}</td>
                                 <td>{category.name}</td>
-                                <td><button type="button" className="removeBtn" onClick={() => this.handleRemoveCategory(category.id)}>Remove</button></td>
+                                <td><button type="button" className="removeBtn" onClick={(): Promise<void> => this.handleRemoveCategory(category.id)}>Remove</button></td>
                             </tr>
                         ))
                     }

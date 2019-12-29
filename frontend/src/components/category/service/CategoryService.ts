@@ -49,8 +49,6 @@ class CategoryService {
         const response = responseRaw.json();
         return response;
     }
-
-    // TODO: implement /update
 }
 
 export default CategoryService;

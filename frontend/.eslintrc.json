@@ -28,6 +28,8 @@
         }
     },
     "rules": {
+        "object-curly-newline": "off",
+        "max-len": "off",
         "no-undef": "off",
         "indent": [
             "error",

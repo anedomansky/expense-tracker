@@ -53,8 +53,6 @@ class ExpenseService {
         const response = responseRaw.json();
         return response;
     }
-
-    // TODO: implement /update
 }
 
 export default ExpenseService;

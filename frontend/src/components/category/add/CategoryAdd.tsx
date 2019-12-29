@@ -16,18 +16,19 @@ class CategoryAdd extends React.PureComponent<{}, State> {
         };
     }
 
-    addCategory = async (event: any): Promise<void> => {
+    addCategory = async (event: React.FormEvent): Promise<void> => {
         event.preventDefault();
-        const response = await CategoryService.getInstance().addCategory(event.target[0].value);
+        const { name } = this.state;
+        const response = await CategoryService.getInstance().addCategory(name);
         this.setState({
             successMessage: response.success,
             name: '',
         });
     }
 
-    handleNameChange(event: any): void {
+    handleNameChange(event: React.FormEvent<HTMLInputElement>): void {
         this.setState({
-            name: event.target.value,
+            name: event.currentTarget.value,
         });
     }
 
@@ -42,7 +43,7 @@ class CategoryAdd extends React.PureComponent<{}, State> {
                 <label htmlFor="add-item__name">
                     Name:
                     <br />
-                    <input onChange={() => this.handleNameChange(event)} placeholder="Enter a name..." type="text" id="add-item__name" name="name" pattern="[a-zA-Z]+" value={name} required />
+                    <input onChange={(event): void => this.handleNameChange(event)} placeholder="Enter a name..." type="text" id="add-item__name" name="name" pattern="[a-zA-Z]+" value={name} required />
                 </label>
                 <button type="submit">Add</button>
             </Add>
